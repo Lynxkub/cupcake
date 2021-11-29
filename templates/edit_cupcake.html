@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titile %}Edit Cupcake #{{cupcake.id}}{% endblock %}
+
+{% block content %}
+
+<form action = '/api/cupcakes/{{cupcake.id}}' method='PATCH'>
+{{form.hidden_tag()}}
+{% for field in form if field.widget.input_type != 'hidden' %}
+<p>
+    {{field.label}}
+    {{field}}
+</p>
+{% endfor %}
+<button id='confirm_edit' data-id={{cupcake.id}}>Confirm Edit</button>
+</form>
+{% endblock %}

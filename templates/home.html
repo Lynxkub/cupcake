@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<h1>Cupcakes</h1>
+<form id = 'cupcake_list'>
+{% for cupcake in cupcakes %}
+<p>
+{{cupcake.flavor}}<button formaction = '/edit_cupcake{{cupcake.id}}' class = 'edit_cupcake' data-id = {{cupcake.id}}>Edit</button><button class = 'delete_cupcake' data-id = {{cupcake.id}}>Delete</button>
+</p>
+{% endfor %}
+</form>
+<form id = 'cupcake-add-form' method = 'POST'>
+    {{form.hidden_tag()}}
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+
+    <p>
+        {{field.label}}
+        {{field}}
+    </p>
+    {% endfor %}
+    <button class = 'addCupcake'>Add Cupcake</button>
+</form>
+
+
+{% endblock %}
+
